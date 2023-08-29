@@ -1,0 +1,16 @@
+TotalSalesRevenue,,,ProductName,sum(Orderqty),sum(SalesPrice),SalesTeam,,,,Region,AverageProfit,,,,,,,,,,,,,
+44365025.97,,,Vanities,4648,1856248.05,Nicholas Cunningham,,,,West,635.1529949,,,,,,,,,,,,,
+,,,,,,,,,,Midwest,634.4806074,,,,,,,,,,,,,
+ProductName,Orderqty,OrderNumber,SalesChannel,,average,,,,,Northeast,632.8621449,,,,,,,,,,,,,
+Accessories,7,SO78,Distributor,,5.5201,,,,,South,632.4848585,,,,,,,,,,,,,
+Bakeware,8,SO37,In-Store,,,,,,,,,,,,,,,,,,,,ProductName,QuantitiesOrdered
+Cocktail Glasses,3,SO59,Distributor,,OrderNumber,SalesChannel,Salesteamindex,Orderqty,unitprice,unitcost,SalesPrice,CostPrice,Profit,SalesTeam,Region,ProductCategory,ProductName,state,,state,OrderSold,,Vanities,4648
+Computers,4,SO6,Distributor,,SO471,Wholesale,6,3,179.01,127.87,537.03,383.61,153.42,Joshua Bennett,Northeast,Electronics,Computers,Arizona,,Alabama,16837,,Candles,4446
+Dining Furniture,4,SO3,In-Store,,,,,,,,,,,,,,,,,,,,Wine Storage,4409
+Dinnerware,2,SO7,In-Store,,,,,,,,,,,,,,,,,,,,Basketball,4405
+Mirrors,5,SO23,Distributor,,,ProductCategory,OrderCounts,,ProductName,TotalQuantities,,ProductName,TotalQuantities,,ExpensiveProducts,TotalQuantities,unitprice,,CheapProducts,TotalQuantities,unitprice,,Dining Furniture,4376
+Ornaments,2,SO40,In-Store,,,Decoratives,3083,,Vanities,4648,,Accessories,4035,,Wine Storage,4409,644.2,,Accessories,4035,323.28,,Cookware,4360
+Photo Frames,2,SO29,Distributor,,,Drinkware,3029,,Candles,4446,,Floral,4060,,Ornaments,4271,614.08,,Floral,4060,273.99,,Dinnerware,4326
+Serveware,5,SO24,Distributor,,,Furniture,3049,,Wine Storage,4409,,Photo Frames,4099,,Furniture Cushions,4129,579.53,,Photo Frames,4099,340.71,,Stemware,4299
+Stemware,10,SO82,Distributor,,,Kitchenery,3094,,Basketball,4405,,Bar Tools,4104,,Bar Tools,4104,551.55,,Bar Tools,4104,551.55,,TV and video,4282
+Wine Storage,3,SO19,In-Store,,,,,,Dining Furniture,4376,,Bakeware,4122,,Bakeware,4122,551.27,,Bakeware,4122,551.27,,Mirrors,4282

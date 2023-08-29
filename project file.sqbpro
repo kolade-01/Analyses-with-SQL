@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/kolad/OneDrive/Desktop/ZIK Hall UI, data analysis cohort/sql project(zik-hall)/Kolade Quadri Segun (sql project)/ZikHallProject.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1993"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:maindata1"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="NewTable" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="94"/><column index="2" value="93"/><column index="3" value="109"/><column index="4" value="67"/><column index="5" value="65"/><column index="6" value="61"/><column index="7" value="74"/><column index="8" value="69"/><column index="9" value="116"/><column index="10" value="129"/><column index="11" value="62"/><column index="12" value="119"/><column index="13" value="118"/><column index="14" value="61"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="data1" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="94"/><column index="2" value="73"/><column index="3" value="93"/><column index="4" value="67"/><column index="5" value="109"/><column index="6" value="78"/><column index="7" value="93"/><column index="8" value="67"/><column index="9" value="65"/><column index="10" value="61"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="data2" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="65"/><column index="2" value="129"/><column index="3" value="62"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="data3" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="65"/><column index="2" value="118"/><column index="3" value="119"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="data4" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="170"/><column index="3" value="82"/><column index="4" value="118"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="1.sql">ALTER TABLE data1
+ADD COLUMN SalesPrice as (Orderqty * unitprice);</sql><sql name="2.sql">ALTER TABLE data1
+ADD COLUMN CostPrice as (Orderqty * unitcost);</sql><sql name="3.sql">ALTER TABLE data1
+ADD COLUMN Profit as (SalesPrice - CostPrice);</sql><sql name="4.sql">CREATE TABLE NewTable as
+SELECT 
+	OrderNumber,
+	SalesChannel,
+	Salesteamindex,
+	Orderqty,
+	unitprice,
+	unitcost,
+	SalesPrice,
+	CostPrice,
+	Profit,
+	data2.SalesTeam,
+	data2.Region,
+	data3.ProductCategory,
+	data3.ProductName,
+	data4.state
+FROM 
+	data1
+INNER JOIN
+	data2 on data1.Salesteamindex = data2.Id_Index
+INNER JOIN
+	data3 on data1.Salesteamindex = data3.Index_Id
+INNER JOIN
+	data4 on data1.Salesteamindex = data4.id;</sql><sql name="5.sql">SELECT sum(SalesPrice) as TotalSalesRevenue
+FROM NewTable</sql><sql name="6.sql">SELECT ProductName, Orderqty, OrderNumber, SalesChannel
+FROM NewTable
+GROUP by ProductName
+HAVING SalesChannel in (&quot;In-Store&quot;, &quot;Distributor&quot;);</sql><sql name="7.sql">SELECT ProductName, sum(Orderqty), sum(SalesPrice), SalesTeam
+FROM NewTable
+GROUP by ProductName
+HAVING SalesTeam in (&quot;Nicholas Cunningham&quot;);</sql><sql name="8.sql">SELECT avg(Orderqty) as average
+FROM NewTable;</sql><sql name="9.sql">/*SELECT avg(Orderqty) as average
+FROM NewTable*/
+
+SELECT *
+FROM NewTable
+WHERE Orderqty &gt; 5.5201;</sql><sql name="10.sql">SELECT ProductName, sum(Orderqty) as QuantitiesOrdered
+FROM NewTable
+GROUP by ProductName
+ORDER by QuantitiesOrdered DESC
+LIMIT 10 OFFSET 0;</sql><sql name="11.sql">SELECT state, sum(Orderqty) as OrderSold
+FROM NewTable
+GROUP by state
+HAVING state in (&quot;Alabama&quot;);</sql><sql name="12.sql">SELECT *
+FROM NewTable
+WHERE OrderNumber = &quot;SO471&quot;;</sql><sql name="13.sql">SELECT Region, avg(Profit) as AverageProfit
+FROM NewTable
+GROUP by Region
+ORDER by AverageProfit  DESC;
+</sql><sql name="14.sql">SELECT ProductCategory, count(OrderNumber) as OrderCounts
+FROM NewTable
+GROUP by ProductCategory
+HAVING OrderCounts &gt;= 2000;</sql><sql name="15.sql">SELECT ProductName, sum(Orderqty) as TotalQuantities
+FROM NewTable
+GROUP by ProductName
+ORDER by TotalQuantities DESC
+LIMIT 5 OFFSET 0;</sql><sql name="16.sql">SELECT ProductName, sum(Orderqty) as TotalQuantities
+FROM NewTable
+GROUP by ProductName
+ORDER by TotalQuantities ASC
+LIMIT 5 OFFSET 0;</sql><sql name="17.sql">SELECT ProductName as ExpensiveProducts, sum(Orderqty) as TotalQuantities, unitprice
+FROM NewTable
+GROUP by ProductName
+ORDER by unitprice DESC
+LIMIT 5 OFFSET 0;</sql><sql name="18.sql">SELECT ProductName as CheapProducts, sum(Orderqty) as TotalQuantities, unitprice
+FROM NewTable
+GROUP by ProductName
+ORDER by TotalQuantities ASC
+LIMIT 5 OFFSET 0;</sql><current_tab id="17"/></tab_sql></sqlb_project>
